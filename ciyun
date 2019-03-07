@@ -1,0 +1,16 @@
+import jieba
+import wordcloud
+from scipy.misc import imread
+mask=imread("china.jpg")
+f = open("新时代.txt","r",encoding='utf-8')
+t = f.read()
+f.close()
+ls = jieba.lcut(t)
+tx=" ".join(ls)
+
+w = wordcloud.WordCloud(font_path='msyh.ttf',\
+                        width=1000,height=600,\
+                        background_color = 'white',\
+                        mask = mask)
+w.generate(tx)
+w.to_file("grwordcloud.png")
